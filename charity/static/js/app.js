@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$buttonsContainer = $el.querySelector(".help--buttons");
       this.$slidesContainers = $el.querySelectorAll(".help--slides");
       this.currentSlide = this.$buttonsContainer.querySelector(".active").parentElement.dataset.id;
+      this.selectedCategories = [];
       this.init();
     }
 
@@ -191,11 +192,31 @@ document.addEventListener("DOMContentLoaded", function() {
     /**
      * All events that are happening in form
      */
+    handleStep(currentStep) {
+      console.log(currentStep);
+      if (currentStep === 1) {
+        this.checkedCategories = Array.from(this.$form.querySelectorAll(".step1 :checked")).map((element) => Number(element.value))
+        var institutionsCategories = Array.from(this.$form.querySelectorAll(".step4")).map((element) => JSON.parse(element.title))
+        var institutions = document.querySelectorAll("div.step4")
+        console.log(this.checkedCategories);
+        console.log(institutionsCategories);
+        console.log(institutions);
+
+        institutions.forEach(function(institution, index) {
+          if (!(institutionsCategories[index].includes(this.checkedCategories))){
+            institution.style.display = ""
+          }
+        })
+      }
+    }
+
+
     events() {
       // Next step
       this.$next.forEach(btn => {
         btn.addEventListener("click", e => {
           e.preventDefault();
+          this.handleStep(this.currentStep);
           this.currentStep++;
           this.updateForm();
         });
@@ -212,6 +233,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Form submit
       this.$form.querySelector("form").addEventListener("submit", e => this.submit(e));
+
+      // Dynamic organisations
+
+      // var checkedCategories = this.$form.querySelectorAll(".form-group form-group--checkbox input:checked");
+      // console.log(checkedCategories)
+
+
+
+      if (this.currentStep ===3) {
+
+      }
+
     }
 
     /**

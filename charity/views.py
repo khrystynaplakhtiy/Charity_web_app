@@ -7,7 +7,9 @@ from django.db.models import Sum
 from charity.forms import *
 from django.contrib.auth import authenticate, login, logout
 
+
 # Create your views here.
+
 
 
 class LandingPage(View):
@@ -29,13 +31,23 @@ class LandingPage(View):
 class AddDonation(View):
     def get(self, request):
         categories = Category.objects.all()
+        institutions = Institution.objects.all()
+        institutions_categories = []
+        for institution in institutions:
+            institutions_categories.append([v.id for v in institution.categories.all()])
+
         ctx = {
-            "categories": categories
+            "categories": categories,
+            "institutions": institutions,
+            "institutions_categories": institutions_categories,
         }
         if not request.user.is_authenticated:
             return redirect('login_page')
         else:
             return render(request, 'form.html', ctx)
+
+    # def post (self, request):
+
 
 
 
@@ -56,9 +68,10 @@ class LoginPage(View):
         return render(request, 'login.html')
 
 
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/')
+class LogoutPage(View):
+    def get(self, request):
+        logout(request)
+        return redirect('landing_page')
 
 
 class RegisterPage(View):
