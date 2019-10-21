@@ -47,6 +47,20 @@ class AddDonation(View):
             return render(request, 'form.html', ctx)
 
     # def post (self, request):
+    #     user = User.objects.get(user=request.user)
+    #
+    #     quantity = request.POST.get('bags')
+    #     address = request.POST.get('address')
+    #     phone_number = request.POST.get('phone')
+    #     city = request.POST.get('city')
+    #     zip_code = request.POST.get('postcode')
+    #     pick_up_date = request.POST.get('date')
+    #     pick_up_time = request.POST.get('time')
+    #     pick_up_comment = request.POST.get('more_info')
+    #     institution = request.POST.get('organization')
+
+
+
 
 
 

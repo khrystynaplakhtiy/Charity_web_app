@@ -195,18 +195,47 @@ document.addEventListener("DOMContentLoaded", function() {
     handleStep(currentStep) {
       console.log(currentStep);
       if (currentStep === 1) {
-        this.checkedCategories = Array.from(this.$form.querySelectorAll(".step1 :checked")).map((element) => Number(element.value))
+        var checkedCategories = Array.from(this.$form.querySelectorAll(".step1 :checked")).map((element) => Number(element.value))
         var institutionsCategories = Array.from(this.$form.querySelectorAll(".step4")).map((element) => JSON.parse(element.title))
         var institutions = document.querySelectorAll("div.step4")
-        console.log(this.checkedCategories);
-        console.log(institutionsCategories);
-        console.log(institutions);
+
+        function arrayContainsArray(firstArray, secondArray) {
+            if (0 === secondArray.length) {
+                return false;
+            }
+            return secondArray.every(function (value) {
+                return (firstArray.indexOf(value) >= 0);
+                    });
+                }
 
         institutions.forEach(function(institution, index) {
-          if (!(institutionsCategories[index].includes(this.checkedCategories))){
-            institution.style.display = ""
+          if (!(arrayContainsArray(institutionsCategories[index], checkedCategories))){
+            institution.style.display = "None"
           }
         })
+      }
+      if (currentStep ===4) {
+
+          //Adres odbioru//
+
+          document.getElementById("bagsSummary").innerText = document.getElementById("bagsSelected").value + ' worków'
+          document.getElementById("institutionSummary").innerText = "Dla " + '"' + document.querySelector(".step4 :checked").value + '"'
+          document.getElementById("streetSummary").innerText = document.getElementById("street").value
+          document.getElementById("citySummary").innerText = document.getElementById("city").value
+          document.getElementById("postalSummary").innerText = document.getElementById("postalcode").value
+          document.getElementById("phoneSummary").innerText = document.getElementById("phone").value
+
+          //Termin odbioru//
+
+          document.getElementById("dateSummary").innerText = document.getElementById("date").value
+          document.getElementById("timeSummary").innerText = document.getElementById("time").value
+          document.getElementById("notesSummary").innerText = document.getElementById("notes").value
+
+
+
+
+
+
       }
     }
 
@@ -233,17 +262,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Form submit
       this.$form.querySelector("form").addEventListener("submit", e => this.submit(e));
-
-      // Dynamic organisations
-
-      // var checkedCategories = this.$form.querySelectorAll(".form-group form-group--checkbox input:checked");
-      // console.log(checkedCategories)
-
-
-
-      if (this.currentStep ===3) {
-
-      }
 
     }
 
