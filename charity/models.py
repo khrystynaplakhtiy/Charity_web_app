@@ -2,6 +2,7 @@ from django.db import models
 from phone_field import PhoneField
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 
 
@@ -24,8 +25,6 @@ class Institution(models.Model):
 
     def __str__(self):
         return self.name
-
-
 
 
 class Donation(models.Model):

@@ -231,11 +231,6 @@ document.addEventListener("DOMContentLoaded", function() {
           document.getElementById("timeSummary").innerText = document.getElementById("time").value
           document.getElementById("notesSummary").innerText = document.getElementById("notes").value
 
-
-
-
-
-
       }
     }
 
@@ -261,7 +256,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
       // Form submit
-      this.$form.querySelector("form").addEventListener("submit", e => this.submit(e));
+      // this.$form.querySelector("form").addEventListener("submit", e => this.submit(e));
 
     }
 

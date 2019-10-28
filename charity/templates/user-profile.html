@@ -1,0 +1,14 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% block content %}
+
+    <h2>Profil użytkownika {{ request.user }}</h2>
+
+
+
+            <div><h2><b>Imie:</b> {{ request.user.first_name }} </h2></div>
+            <div><h2><b>Nazwisko:</b> {{ request.user.last_name }} </h2></div>
+            <div><h2><b>Email:</b> {{ request.user.username }} </h2></div>
+
+
+    {% endblock %}

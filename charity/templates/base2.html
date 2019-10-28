@@ -20,7 +20,7 @@
           <li class="logged-user">
             Witaj {{ user }}
             <ul class="dropdown">
-              <li><a href="#">Profil</a></li>
+              <li><a href="{%  url 'profile' %}">Profil</a></li>
               <li><a href="#">Ustawienia</a></li>
               <li><a href="{% url 'admin:index' %}">Panel administracyjny</a></li>
               <li><a href="{% url 'logout' %}">Wyloguj</a></li>
@@ -50,12 +50,7 @@
       </nav>
 
   {% block content %}
-<!--  </span>-->
-<!--  <div class="container">-->
-<!--    <div class="row">-->
-<!--      <div class="col-sm-1">-->
-<!--      </div>-->
-<!--      <div class="col col-sm-10"-->
+
   {% endblock %}
 
     <footer>
