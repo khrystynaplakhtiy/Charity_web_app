@@ -25,15 +25,6 @@ document.addEventListener("DOMContentLoaded", function() {
           this.changeSlide(e);
         }
       });
-
-      /**
-       * Pagination buttons
-       */
-      this.$el.addEventListener("click", e => {
-        if (e.target.classList.contains("btn") && e.target.parentElement.parentElement.classList.contains("help--slides-pagination")) {
-          this.changePage(e);
-        }
-      });
     }
 
     changeSlide(e) {
@@ -57,9 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     }
 
-    /**
-     * TODO: callback to page change event
-     */
+
     changePage(e) {
       e.preventDefault();
       const page = e.target.dataset.page;
@@ -194,6 +183,11 @@ document.addEventListener("DOMContentLoaded", function() {
      */
     handleStep(currentStep) {
       console.log(currentStep);
+
+      /**
+       * Filter available institutions based on selected categories in step 1
+       */
+
       if (currentStep === 1) {
         var checkedCategories = Array.from(this.$form.querySelectorAll(".step1 :checked")).map((element) => Number(element.value))
         var institutionsCategories = Array.from(this.$form.querySelectorAll(".step4")).map((element) => JSON.parse(element.title))
@@ -215,17 +209,20 @@ document.addEventListener("DOMContentLoaded", function() {
         })
       }
       if (currentStep ===4) {
+        /**
+         * Display previously added Address information in Summary on step 4
+         */
 
-          //Adres odbioru//
-
-          document.getElementById("bagsSummary").innerText = document.getElementById("bagsSelected").value + ' worków'
+          document.getElementById("bagsSummary").innerText = 'Spakowanych worków: ' + document.getElementById("bagsSelected").value
           document.getElementById("institutionSummary").innerText = "Dla " + '"' + document.querySelector(".step4 :checked").value + '"'
           document.getElementById("streetSummary").innerText = document.getElementById("street").value
           document.getElementById("citySummary").innerText = document.getElementById("city").value
           document.getElementById("postalSummary").innerText = document.getElementById("postalcode").value
           document.getElementById("phoneSummary").innerText = document.getElementById("phone").value
 
-          //Termin odbioru//
+          /**
+         * Display previously added pick-up details information in Summary on step 4
+         */
 
           document.getElementById("dateSummary").innerText = document.getElementById("date").value
           document.getElementById("timeSummary").innerText = document.getElementById("time").value
@@ -267,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateForm() {
       this.$step.innerText = this.currentStep;
 
-      // TODO: Validation
+
 
       this.slides.forEach(slide => {
         slide.classList.remove("active");
@@ -280,13 +277,10 @@ document.addEventListener("DOMContentLoaded", function() {
       this.$stepInstructions[0].parentElement.parentElement.hidden = this.currentStep >= 6;
       this.$step.parentElement.hidden = this.currentStep >= 6;
 
-      // TODO: get data from inputs and show them in summary
     }
 
     /**
      * Submit form
-     *
-     * TODO: validation, send data to server
      */
     submit(e) {
       e.preventDefault();
