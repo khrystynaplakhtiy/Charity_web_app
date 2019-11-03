@@ -10,5 +10,14 @@ Main page displays count of all supported organisations and amount of donated ba
 
 Database used for this application: PostgreSQL
 
+ ##
+<br/>
+This project was developed within CodersLab Portfolio Lab. Main focus of my work was back-end part.<br/>
+Files within catalogue /charity/static/ were originally provided by Coders Lab, and then modified where needed (comments provided).<br/>
+Files within catalogue /charity/templates/ were also provided, but havily modified for project needs.
+
+
+
+
 
  
