@@ -1,3 +1,8 @@
+/**
+ * This file was provided by Coders LAB
+ * My code is added in lines 189 - 237
+ */
+
 document.addEventListener("DOMContentLoaded", function() {
   /**
    * HomePage - Help section
@@ -189,45 +194,45 @@ document.addEventListener("DOMContentLoaded", function() {
        */
 
       if (currentStep === 1) {
-        var checkedCategories = Array.from(this.$form.querySelectorAll(".step1 :checked")).map((element) => Number(element.value))
-        var institutionsCategories = Array.from(this.$form.querySelectorAll(".step4")).map((element) => JSON.parse(element.title))
-        var institutions = document.querySelectorAll("div.step4")
+        const checkedCategories = Array
+          .from(this.$form.querySelectorAll(".step1 :checked"))
+          .map((element) => Number(element.value));
+        const institutionsCategories = Array
+          .from(this.$form.querySelectorAll(".step4"))
+          .map((element) => JSON.parse(element.title));
+        const institutions = document.querySelectorAll("div.step4");
 
-        function arrayContainsArray(firstArray, secondArray) {
-            if (0 === secondArray.length) {
-                return false;
-            }
-            return secondArray.every(function (value) {
-                return (firstArray.indexOf(value) >= 0);
-                    });
-                }
-
-        institutions.forEach(function(institution, index) {
-          if (!(arrayContainsArray(institutionsCategories[index], checkedCategories))){
-            institution.style.display = "None"
+        const arrayContainsArray = (firstArray, secondArray) => {
+          if (0 === secondArray.length) {
+            return false;
           }
-        })
+
+          return secondArray.every((value) => firstArray.indexOf(value) >= 0);
+        };
+
+        institutions.forEach( (institution, index) => {
+          if (!(arrayContainsArray(institutionsCategories[index], checkedCategories))) {
+            institution.style.display = "None";
+          }
+        });
       }
-      if (currentStep ===4) {
+      if (currentStep === 4) {
         /**
          * Display previously added Address information in Summary on step 4
          */
+        document.getElementById("bagsSummary").innerText = 'Spakowanych worków: ' + document.getElementById("bagsSelected").value;
+        document.getElementById("institutionSummary").innerText = "Dla " + '"' + document.querySelector(".step4 :checked").value + '"';
+        document.getElementById("streetSummary").innerText = document.getElementById("street").value;
+        document.getElementById("citySummary").innerText = document.getElementById("city").value;
+        document.getElementById("postalSummary").innerText = document.getElementById("postalcode").value;
+        document.getElementById("phoneSummary").innerText = document.getElementById("phone").value;
 
-          document.getElementById("bagsSummary").innerText = 'Spakowanych worków: ' + document.getElementById("bagsSelected").value
-          document.getElementById("institutionSummary").innerText = "Dla " + '"' + document.querySelector(".step4 :checked").value + '"'
-          document.getElementById("streetSummary").innerText = document.getElementById("street").value
-          document.getElementById("citySummary").innerText = document.getElementById("city").value
-          document.getElementById("postalSummary").innerText = document.getElementById("postalcode").value
-          document.getElementById("phoneSummary").innerText = document.getElementById("phone").value
-
-          /**
+        /**
          * Display previously added pick-up details information in Summary on step 4
          */
-
-          document.getElementById("dateSummary").innerText = document.getElementById("date").value
-          document.getElementById("timeSummary").innerText = document.getElementById("time").value
-          document.getElementById("notesSummary").innerText = document.getElementById("notes").value
-
+        document.getElementById("dateSummary").innerText = document.getElementById("date").value;
+        document.getElementById("timeSummary").innerText = document.getElementById("time").value;
+        document.getElementById("notesSummary").innerText = document.getElementById("notes").value;
       }
     }
 

@@ -3,9 +3,6 @@ from phone_field import PhoneField
 from django.contrib.auth.models import User
 
 
-# Create your models here.
-
-
 class Category(models.Model):
     name = models.CharField(max_length=255)
 
@@ -17,7 +14,8 @@ class Institution(models.Model):
     organisation_types = [
         ('fundacja', 'fundacja'),
         ('organizacja pozarządowa', 'organizacja pozarządowa'),
-        ('zbiórka lokalna', 'zbiórka lokalna')]
+        ('zbiórka lokalna', 'zbiórka lokalna')
+    ]
     name = models.CharField(max_length=255)
     description = models.TextField()
     type = models.CharField(max_length=255, choices=organisation_types, default='fundacja')
@@ -39,4 +37,3 @@ class Donation(models.Model):
     pick_up_time = models.TimeField()
     pick_up_comment = models.TextField()
     user = models.ForeignKey(User, null=True, default=None, on_delete=models.CASCADE)
-

@@ -1,14 +1,55 @@
-{% extends 'base2.html' %}
+{% extends 'base-extended-headers.html' %}
 {% load static %}
 {% block content %}
 
-    <h2>Profil użytkownika {{ request.user }}</h2>
+
+    <section class="login-page">
+      <h2>Dane profilowe</h2>
 
 
 
-            <div><h2><b>Imie:</b> {{ request.user.first_name }} </h2></div>
-            <div><h2><b>Nazwisko:</b> {{ request.user.last_name }} </h2></div>
-            <div><h2><b>Email:</b> {{ request.user.username }} </h2></div>
+        <div class="form-group">
+          <p style="font-size:18px"><b>Imie:</b> {{ request.user.first_name }} </p>
+        </div>
+         <div class="form-group">
+          <p style="font-size:18px"><b>Nazwisko:</b> {{ request.user.last_name }} </p>
+        </div>
+        <div class="form-group">
+          <p style="font-size:18px"><b>Email:</b> {{ request.user.username }} </p>
+        </div>
 
 
-    {% endblock %}
+{#        <div class="form-group">#}
+{#          <input type="password" name="password" placeholder="Hasło" />#}
+{#        </div>#}
+{#        <div class="form-group">#}
+{#          <input type="password" name="password2" placeholder="Powtórz hasło" />#}
+{#        </div>#}
+{##}
+{#        <div class="form-group form-group--buttons">#}
+{#          <a href="{% url 'login_page' %}" class="btn btn--without-border">Zaloguj się</a>#}
+{#          <button class="btn" type="submit">Załóż konto</button>#}
+{#        </div>#}
+{#      </form>#}
+    </section>
+
+    <hr style="border: 2px dotted #bcbcbc">
+
+    <section class="login-page">
+      <h2>Aktywność</h2>
+
+
+
+        <div class="form-group">
+          <p style="font-size:18px"><b>Iliość przekazanych worków:</b> {{ quantity }} </p>
+        </div>
+         <div class="form-group">
+          <p style="font-size:18px"><b>Wspierane organizacje:</b> {{ institutions_name }} </p>
+        </div>
+        <div class="form-group">
+          <p style="font-size:18px"><b>Kategorie darów:</b> {{ categories_name }} </p>
+        </div>
+
+    </section>
+
+{% endblock %}
